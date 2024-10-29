@@ -1,0 +1,25 @@
+# remember to run `source init.sh`
+
+# Check if uv is installed
+if ! command -v uv &> /dev/null
+then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
+source $HOME/.cargo/env
+source .venv/bin/activate
+alias uvpi="uv pip install"
+
+if ! command -v tmux &> /dev/null
+then
+    sudo apt install tmux
+fi
+
+# check if dspy is a folder
+if [ ! -d "dspy" ]; then
+    git clone https://github.com/stanfordnlp/dspy.git
+fi
+
+uvpi -e ./dspy
+
+# vllm serve Qwen/Qwen2-VL-7B-Instruct --trust-remote-code --limit-mm-per-prompt image=16 --seed 42
