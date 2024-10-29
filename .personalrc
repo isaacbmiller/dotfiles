@@ -5,10 +5,17 @@ if ! command -v uv &> /dev/null
 then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
+# check if .venv is a folder
+if [ ! -d ".venv" ]; then
+    uv venv
+fi
 
 source $HOME/.cargo/env
 source .venv/bin/activate
 alias uvpi="uv pip install"
+
+git config --global user.email "isaacbmiller@gmail.com"
+git config --global user.name "isaacbmiller"
 
 if ! command -v tmux &> /dev/null
 then
@@ -20,6 +27,10 @@ if [ ! -d "dspy" ]; then
     git clone https://github.com/stanfordnlp/dspy.git
 fi
 
-uvpi -e ./dspy
+# Check if dspy is installed
+if ! uv pip list | grep -q "dspy"; then
+    echo "Installing dspy"
+    uvpi -e ./dspy
+fi
 
 # vllm serve Qwen/Qwen2-VL-7B-Instruct --trust-remote-code --limit-mm-per-prompt image=16 --seed 42
