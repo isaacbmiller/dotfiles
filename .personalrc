@@ -33,4 +33,6 @@ if ! uv pip list | grep -q "dspy"; then
     uvpi -e ./dspy
 fi
 
+uvpi ipykernel vllm setuptools
+
 # vllm serve Qwen/Qwen2-VL-7B-Instruct --trust-remote-code --limit-mm-per-prompt image=16 --seed 42
