@@ -5,12 +5,12 @@ if ! command -v uv &> /dev/null
 then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
+source $HOME/.cargo/env
 # check if .venv is a folder
 if [ ! -d ".venv" ]; then
     uv venv
 fi
 
-source $HOME/.cargo/env
 source .venv/bin/activate
 alias uvpi="uv pip install"
 
