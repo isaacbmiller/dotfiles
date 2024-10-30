@@ -24,7 +24,7 @@ fi
 
 # check if dspy is a folder
 if [ ! -d "dspy" ]; then
-    git clone https://github.com/stanfordnlp/dspy.git
+    git clone mm-adapter https://github.com/stanfordnlp/dspy.git
 fi
 
 # Check if dspy is installed
