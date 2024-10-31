@@ -13,6 +13,7 @@ fi
 
 source .venv/bin/activate
 alias uvpi="uv pip install"
+alias gcm="git commit -s -m"
 
 git config --global user.email "isaacbmiller@gmail.com"
 git config --global user.name "isaacbmiller"
