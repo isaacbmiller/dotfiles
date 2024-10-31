@@ -24,7 +24,7 @@ fi
 
 # check if dspy is a folder
 if [ ! -d "dspy" ]; then
-    git clone mm-adapter https://github.com/stanfordnlp/dspy.git
+    git clone -b mm-adapter https://github.com/stanfordnlp/dspy.git
 fi
 
 # Check if dspy is installed
@@ -33,6 +33,6 @@ if ! uv pip list | grep -q "dspy"; then
     uvpi -e ./dspy
 fi
 
-uvpi ipykernel vllm setuptools
+uvpi ipykernel vllm setuptools jupyter
 
 # vllm serve Qwen/Qwen2-VL-7B-Instruct --trust-remote-code --limit-mm-per-prompt image=16 --seed 42
