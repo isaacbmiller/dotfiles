@@ -99,23 +99,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 export PATH="/Users/isaac/.local/bin:$PATH"
-export DENO_INSTALL="/Users/isaac/.deno"
 alias togglesite='sudo python3 /Users/isaac/Projects/EasyScripts/productivity-tools/toggle_site.py'
 alias update-aliases='python3 /Users/isaac/Projects/EasyScripts/update-all.py;exec bash'
 alias emsupdate='update-aliases'
 alias gpa='gitpushall'
-export EasyModularScriptsDir='/Users/isaac/Projects/EasyScripts'
 alias viewhosts='cat /etc/hosts'
 export PATH="$HOME/tools/zig:$PATH"
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-function sudo() {
-    if [[ $1 == "nvim" && $2 == "/etc/hosts" ]]; then
-        echo "Editing /etc/hosts with nvim is not allowed."
-    else
-        command sudo "$@"
-    fi
-}
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
 . "$HOME/.cargo/env"

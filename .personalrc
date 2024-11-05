@@ -23,15 +23,37 @@ then
     sudo apt install tmux
 fi
 
+if ! command -v gh &> /dev/null
+then
+    sudo apt install gh -y
+    gh auth login
+fi
+
 # check if dspy is a folder
 if [ ! -d "dspy" ]; then
-    git clone -b mm-adapter https://github.com/stanfordnlp/dspy.git
+    git clone https://github.com/stanfordnlp/dspy.git
 fi
 
 # Check if dspy is installed
 if ! uv pip list | grep -q "dspy"; then
     echo "Installing dspy"
     uvpi -e ./dspy
+fi
+
+# sudo apt install zsh
+if ! command -v zsh &> /dev/null
+then
+    sudo apt install zsh -y
+fi
+
+sudo chsh -s $(which zsh)
+# get zshrc from the same working directory or check ./dotfiles/.zshrc
+if [ ! -f ~/.zshrc ]; then
+    if [ -f .zshrc ]; then
+        cp .zshrc ~/.zshrc
+    else
+        cp ./dotfiles/.zshrc ~/.zshrc
+    fi
 fi
 
 uvpi ipykernel vllm setuptools jupyter
