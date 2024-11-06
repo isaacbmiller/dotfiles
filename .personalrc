@@ -18,16 +18,16 @@ alias gcm="git commit -s -m"
 git config --global user.email "isaacbmiller@gmail.com"
 git config --global user.name "isaacbmiller"
 
-if ! command -v tmux &> /dev/null
-then
-    sudo apt install tmux
-fi
+# Apt plugins to install
+plugins=("tmux" "zsh" "fzf" "gh" "zoxide")
+for plugin in $plugins; do
+    if ! command -v $plugin &> /dev/null
+    then
+        sudo apt install $plugin -y
+    fi
+done
 
-if ! command -v gh &> /dev/null
-then
-    sudo apt install gh -y
-    gh auth login
-fi
+# gh auth login
 
 # check if dspy is a folder
 if [ ! -d "dspy" ]; then
@@ -38,12 +38,6 @@ fi
 if ! uv pip list | grep -q "dspy"; then
     echo "Installing dspy"
     uvpi -e ./dspy
-fi
-
-# sudo apt install zsh
-if ! command -v zsh &> /dev/null
-then
-    sudo apt install zsh -y
 fi
 
 sudo chsh -s $(which zsh)
