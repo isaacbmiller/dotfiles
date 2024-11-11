@@ -5,7 +5,7 @@ if ! command -v uv &> /dev/null
 then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
-source $HOME/.cargo/env
+
 # check if .venv is a folder
 if [ ! -d ".venv" ]; then
     uv venv
@@ -18,6 +18,8 @@ alias gcm="git commit -s -m"
 git config --global user.email "isaacbmiller@gmail.com"
 git config --global user.name "isaacbmiller"
 
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+source $HOME/.cargo/env
 # Apt plugins to install
 plugins=("tmux" "zsh" "fzf" "gh" "zoxide")
 for plugin in $plugins; do
@@ -48,6 +50,9 @@ if [ ! -f ~/.zshrc ]; then
     else
         cp ./dotfiles/.zshrc ~/.zshrc
     fi
+fi
+if [ ! -f ~/.p10k.zsh ]; then
+    cp ./dotfiles/.p10k.zsh ~/.p10k.zsh
 fi
 
 uvpi ipykernel vllm setuptools jupyter

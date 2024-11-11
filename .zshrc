@@ -80,8 +80,9 @@ alias vim='nvim'
 alias c='clear'
 
 # Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+# TODO: Fix this shit
+# eval "$(fzf --zsh)"
+# eval "$(zoxide init --cmd cd zsh)"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/isaac/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
