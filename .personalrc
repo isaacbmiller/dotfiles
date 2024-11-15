@@ -12,8 +12,7 @@ if [ ! -d ".venv" ]; then
 fi
 
 source .venv/bin/activate
-alias uvpi="uv pip install"
-alias gcm="git commit -s -m"
+
 
 git config --global user.email "isaacbmiller@gmail.com"
 git config --global user.name "isaacbmiller"
@@ -36,11 +35,6 @@ if [ ! -d "dspy" ]; then
     git clone https://github.com/stanfordnlp/dspy.git
 fi
 
-# Check if dspy is installed
-if ! uv pip list | grep -q "dspy"; then
-    echo "Installing dspy"
-    uvpi -e ./dspy
-fi
 
 sudo chsh -s $(which zsh)
 # get zshrc from the same working directory or check ./dotfiles/.zshrc
@@ -55,6 +49,21 @@ if [ ! -f ~/.p10k.zsh ]; then
     cp ./dotfiles/.p10k.zsh ~/.p10k.zsh
 fi
 
-uvpi ipykernel vllm setuptools jupyter
+
 
 # vllm serve Qwen/Qwen2-VL-7B-Instruct --trust-remote-code --limit-mm-per-prompt image=16 --seed 42
+# if not in zsh, then run zsh
+if [ "$SHELL" != "/bin/zsh" ]; then
+    zsh
+fi
+
+alias uvpi="uv pip install"
+alias gcm="git commit -s -m"
+
+uvpi ipykernel vllm setuptools jupyter pytest
+
+# Check if dspy is installed
+if ! uv pip list | grep -q "dspy"; then
+    echo "Installing dspy"
+    uvpi -e ./dspy
+fi
